@@ -12,13 +12,14 @@ import ActionHeader from "../Layout/ActionHeader";
 import { FileTree } from "./FilesTree";
 import IssuesView from "./IssuesView";
 import { editorOptions } from "./options";
+import { fake_files } from "@/pages/api/fake_files";
 
 const IndexPage: React.FC = () => {
   const [selectedFiles, setSelectedFiles] = useState<FileItem[]>([]);
   const [target_file, setTarget_file] = useState<FileItem | null>(null);
 
-  const [files, setFiles] = useState<FileItem[]>([]);
-
+  // const [files, setFiles] = useState<FileItem[]>([]);
+  const files = fake_files as FileItem[];
   const handleFileSelect = (file: FileItem) => {
     setTarget_file(file);
     setSelectedFiles((prevSelectedFiles) => {
@@ -45,19 +46,19 @@ const IndexPage: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    fetchFiles();
-  }, []);
+  // useEffect(() => {
+  //   fetchFiles();
+  // }, []);
 
-  const fetchFiles = async () => {
-    try {
-      const res = await fetch("/api/files");
-      const data = await res.json();
-      setFiles(data);
-    } catch (error) {
-      console.error("Error fetching files:", error);
-    }
-  };
+  // const fetchFiles = async () => {
+  //   try {
+  //     const res = await fetch("/api/files");
+  //     const data = await res.json();
+  //     setFiles(data);
+  //   } catch (error) {
+  //     console.error("Error fetching files:", error);
+  //   }
+  // };
   return (
     <div className="flex flex-col h-screen  overflow-hidden  ">
       <ActionHeader />
