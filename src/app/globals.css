@@ -77,6 +77,40 @@
   border-radius: 5px;
   border: 1px solid gray;
 }
+
+body {
+  background: #0d0f11;
+}
+
+.nav-border {
+  position: relative;
+}
+
+.nav-border::after {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  border: 1px solid;
+  border-radius: 0.5rem;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background-color: #007aff1d;
+  scrollbar-width: thin;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 0.2rem;
+  height: 0.1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #c8c8c8;
+  border-radius: 1rem;
+}
 @layer base {
   * {
     @apply border-border;

@@ -1,15 +1,14 @@
 "use client";
 import dynamic from "next/dynamic";
-import React from "react";
-// import IndexPage from "./Editor/MonacoEditor";
+import Layout from "./Editor/Layout";
 const IndexPage = dynamic(() => import("./Editor/MonacoEditor"), {
   ssr: false,
 });
 
 export default function Homepage() {
   return (
-    <div>
+    <Layout>
       <IndexPage />
-    </div>
+    </Layout>
   );
 }

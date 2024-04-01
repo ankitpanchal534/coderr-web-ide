@@ -1,10 +1,11 @@
 // pages/api/files.ts
 import { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
+import { fake_files } from "./fake_files";
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   const files = readDirectory("src"); // Adjust the path as needed
-  res.status(200).json(files);
+  res.status(200).json(fake_files);
 };
 
 interface FileItem {

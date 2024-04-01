@@ -7,23 +7,18 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { cn } from "@/lib/utils";
-import { Cross1Icon, WidthIcon } from "@radix-ui/react-icons";
 import MonacoEditor from "react-monaco-editor";
-import Header from "../Layout/Header";
+import ActionHeader from "../Layout/ActionHeader";
 import { FileTree } from "./FilesTree";
-import { editorOptions } from "./options";
 import IssuesView from "./IssuesView";
+import { editorOptions } from "./options";
 
 const IndexPage: React.FC = () => {
-  //   const [selectedFile, setSelectedFile] = useState<FileItem | null>(null);
   const [selectedFiles, setSelectedFiles] = useState<FileItem[]>([]);
   const [target_file, setTarget_file] = useState<FileItem | null>(null);
 
   const [files, setFiles] = useState<FileItem[]>([]);
 
-  //   const handleFileSelect = (file: FileItem) => {
-  //     setSelectedFile(file);
-  //   };
   const handleFileSelect = (file: FileItem) => {
     setTarget_file(file);
     setSelectedFiles((prevSelectedFiles) => {
@@ -32,13 +27,8 @@ const IndexPage: React.FC = () => {
           (selectedFile) => selectedFile.name === file.name
         )
       ) {
-        // File is already selected, so deselect it
-        // return prevSelectedFiles.filter(
-        //   (selectedFile) => selectedFile.name !== file.name
-        // );
         return prevSelectedFiles;
       } else {
-        // File is not selected, so select it
         return [...prevSelectedFiles, file];
       }
     });
@@ -69,24 +59,25 @@ const IndexPage: React.FC = () => {
     }
   };
   return (
-    <div className="flex flex-col h-screen overflow-hidden text-white bg-[#191D23]">
-      <Header />
-
+    <div className="flex flex-col h-screen  overflow-hidden  ">
+      <ActionHeader />
       <div className="w-full flex justify-center border-t border-gray-600 pt-3">
         <ResizablePanelGroup direction="horizontal" className="h-screen   ">
           <ResizablePanel defaultSize={20} className="px-2">
-            <aside className="bg-[#13161A]  p-2 rounded-sm h-screen overflow-auto">
-              <p className="text-sm pb-2 border-b border-gray-500">
-                Folders & Files
-              </p>
-              <FileTree files={files} onSelectFile={handleFileSelect} />
+            <aside className="bg-[#13161A]  p-2 rounded-sm h-screen overflow-auto overflow-y-scroll pb-40 text-silver-500 text-[16px]">
+              <p className=" pb-2 border-b border-gray-500">Folders & Files</p>
+              <FileTree
+                files={files}
+                onSelectFile={handleFileSelect}
+                selectedFile={target_file || undefined}
+              />
             </aside>
           </ResizablePanel>
 
           <ResizableHandle withHandle />
 
           <ResizablePanel defaultSize={80}>
-            <main className="flex-grow  bg-[#191D23] h-[calc(100dvh-90px)]">
+            <main className="flex-grow   h-[calc(100dvh-90px)]">
               <div
                 className="flex flex-row items-center overflow-scroll "
                 style={{
@@ -177,9 +168,6 @@ const IndexPage: React.FC = () => {
           </ResizablePanel>
         </ResizablePanelGroup>
       </div>
-      <footer className="bg-gray-800 text-white p-1 fixed bottom-0 left-0 w-full">
-        Footer
-      </footer>
     </div>
   );
 };
