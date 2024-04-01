@@ -94,7 +94,10 @@ const IndexPage: React.FC = () => {
                 }}
               >
                 {selectedFiles.toReversed()?.map((selectedFile) => (
-                  <div className="flex justify-start border-r border-black">
+                  <div
+                    className="flex justify-start border-r border-black"
+                    key={selectedFile?.name}
+                  >
                     {selectedFile?.name ? (
                       <div
                         className={cn(

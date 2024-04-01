@@ -33,10 +33,16 @@ export default function IssuesView() {
       <div className="w-full mt-3 py-2 border-b border-gray-500">
         <span>List of Issues</span>
       </div>
-
-      <div className="w-full m-2 bg-[#191d23]">
-        <h1> #1. Lorem ipsum dolor sit ame</h1>
-        <IconForwardArrow />
+      <div className="flex gap-0 flex-col">
+        {new Array(7).fill("_").map((issue, idx) => (
+          <div
+            key={idx}
+            className="w-full m-2 bg-[#191d23] flex items-center justify-between p-3 rounded-sm"
+          >
+            <h1> #1. Lorem ipsum dolor sit ame</h1>
+            <IconForwardArrow />
+          </div>
+        ))}
       </div>
     </aside>
   );
